@@ -1,57 +1,55 @@
 # Expand by Level
 
-A Logseq plugin that collapses or expands all blocks by nesting level with keyboard shortcuts. Works on any page (journals, pages, sidebars).
+**Collapse and expand every block on the current page to a chosen depth — instantly, with a single keystroke.**
 
-## Demo
+Press `Alt+1` to collapse everything. `Alt+2` to see only the top level. `Alt+5` to drill down five levels. One keystroke, the whole outline reshapes around you. Perfect for navigating long pages, reviewing journals, or focusing on the structure of a document.
 
-<!-- TODO: add animated GIF -->
+<!-- TODO: animated demo gif -->
 <!-- ![Demo](./demo.gif) -->
 
-## Features
+## Shortcuts
 
-- **8 levels** — `Alt+Shift+1` (all collapsed) through `Alt+Shift+8` (expand deep)
-- **Numpad support** — both top-row and numpad numbers work
-- **Works everywhere** — journals, pages, embedded blocks, sidebar
-- **Configurable modifier** — `alt+shift` by default, changeable to `ctrl+shift`, `mod+shift`, etc.
-- **Command palette** — all commands also searchable in the palette
+| Shortcut  | Effect                                  |
+| --------- | --------------------------------------- |
+| `Alt+1`   | Collapse all blocks                     |
+| `Alt+2`   | Show root blocks only                   |
+| `Alt+3`   | Expand to depth 2, collapse deeper      |
+| `Alt+4`   | Expand to depth 3, collapse deeper      |
+| `Alt+5`   | Expand to depth 4, collapse deeper      |
+| `Alt+6`   | Expand to depth 5, collapse deeper      |
+| `Alt+7`   | Expand to depth 6, collapse deeper      |
+| `Alt+8`   | Expand to depth 7, collapse deeper      |
 
-## Usage
+Both the top-row digits and the **numpad** work. Shortcuts also fire when **zoomed into a block** — the level then applies to that subtree.
 
-| Shortcut       | Effect                                          |
-| -------------- | ----------------------------------------------- |
-| `Alt+Shift+1`  | Collapse all blocks                             |
-| `Alt+Shift+2`  | Show root blocks only (collapse children)       |
-| `Alt+Shift+3`  | Expand up to depth 1, collapse deeper           |
-| `Alt+Shift+4`  | Expand up to depth 2, collapse deeper           |
-| `Alt+Shift+5`  | Expand up to depth 3, collapse deeper           |
-| `Alt+Shift+6`  | Expand up to depth 4, collapse deeper           |
-| `Alt+Shift+7`  | Expand up to depth 5, collapse deeper           |
-| `Alt+Shift+8`  | Expand up to depth 6, collapse deeper           |
+## Tips
+
+- **Stick to `Alt`** as your modifier. It's ergonomic (single-hand), reliable across the app, and plays well with both the digit row and the numpad. `Alt+Shift` looks tempting but is unstable on the numpad and inside zoomed blocks in some Logseq builds.
+- **Journals home page works differently.** That page lazy-loads journals as you scroll, so the plugin only acts on what's currently rendered in the DOM at the moment you press the shortcut. For deterministic behavior, open the day's journal page directly (click its title) — there the shortcut applies to the whole page.
+- **Any page, any zoom level.** Regular pages, zoomed blocks, and the sidebar all respond to the shortcut.
 
 ## Configuration
 
-### Modifier keys
+Open **Settings → Plugins → Expand by Level** and edit the `modifier` field.
 
-Go to **Settings → Plugins → Expand by Level** and change the `modifier` field.
-After changing, disable then re-enable the plugin for new bindings to take effect.
+| Value         | Combination                                  |
+| ------------- | -------------------------------------------- |
+| `alt`         | Alt — recommended                            |
+| `ctrl+alt`    | Ctrl+Alt                                     |
+| `ctrl+shift`  | Ctrl+Shift                                   |
+| `mod+shift`   | Cmd+Shift on macOS, Ctrl+Shift elsewhere     |
 
-Common values:
-- `alt+shift` — default, works on all platforms
-- `ctrl+shift` — Ctrl+Shift (Win/Linux)
-- `mod+shift` — Ctrl+Shift (Win/Linux) / Cmd+Shift (macOS)
-- `ctrl+alt` — Ctrl+Alt (Win/Linux)
+After changing the modifier, **disable then re-enable** the plugin for the new bindings to take effect.
 
-### Individual keybinding overrides
-
-You can override any shortcut in **Settings → Keyboard Shortcuts** by searching for "Expand by Level".
+Need to override a single binding? **Settings → Keyboard Shortcuts → search "Expand by Level"**.
 
 ## Installation
 
-### From the marketplace
+### Marketplace
 
-Search for "Expand by Level" in **Settings → Plugins → Marketplace**.
+Search **"Expand by Level"** in **Settings → Plugins → Marketplace**.
 
-### Manual (development)
+### Manual / development
 
 ```bash
 git clone https://github.com/darkone-linux/logseq-expand-by-level.git
