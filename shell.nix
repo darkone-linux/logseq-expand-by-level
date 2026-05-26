@@ -9,7 +9,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo "📦 expend-by-level dev shell"
+    echo "📦 logseq-expand-by-level dev shell"
     echo "   node $(node --version)"
     echo "   npm  $(npm --version)"
     echo ""

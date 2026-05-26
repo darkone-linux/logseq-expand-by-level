@@ -22,7 +22,7 @@ jobs:
       - run: pnpm install
       - run: pnpm build
       - name: Package plugin
-        run: cd dist && zip -r ../logseq-expend-by-level.zip .
+        run: cd dist && zip -r ../logseq-expand-by-level.zip .
       - uses: softprops/action-gh-release@v2
         with:
-          files: logseq-expend-by-level.zip
+          files: logseq-expand-by-level.zip

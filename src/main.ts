@@ -5,9 +5,9 @@ function main() {
 
   for (let level = 0; level <= 9; level++) {
     logseq.App.registerCommand(
-      'expend-by-level',
+      'expand-by-level',
       {
-        key: `expend-to-level-${level}`,
+        key: `expand-to-level-${level}`,
         label: `Show blocks up to level ${level}`,
         keybinding: {
           binding: `${modifier}+${level}`,
@@ -49,7 +49,7 @@ async function processBlock(
   try {
     await logseq.Editor.setBlockCollapsed(block.uuid, depth > targetLevel)
   } catch (e) {
-    console.error('[expend-by-level] setBlockCollapsed error:', e)
+    console.error('[expand-by-level] setBlockCollapsed error:', e)
     return
   }
 
@@ -78,7 +78,7 @@ async function toggleBlocksToLevel(level: number): Promise<void> {
 
     await Promise.all(tree.map((block) => processBlock(block, 0, level)))
   } catch (e) {
-    console.error('[expend-by-level] Error:', e)
+    console.error('[expand-by-level] Error:', e)
   }
 }
 

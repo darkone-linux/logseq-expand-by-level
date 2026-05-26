@@ -1,6 +1,18 @@
-# Expend by Level
+# Expand by Level
 
-A Logseq plugin that collapses/expands all blocks based on their nesting level.
+A Logseq plugin that collapses or expands all blocks by nesting level with keyboard shortcuts. Works on any page (journals, pages, sidebars).
+
+## Demo
+
+<!-- TODO: add animated GIF -->
+<!-- ![Demo](./demo.gif) -->
+
+## Features
+
+- **10 levels** — `Ctrl+Shift+0` (root only) through `Ctrl+Shift+9` (expand all)
+- **Works everywhere** — journals, pages, embedded blocks, sidebar
+- **Configurable modifier** — choose `mod+shift`, `mod+alt`, `ctrl+shift`, etc.
+- **Command palette** — all commands also searchable in the palette
 
 ## Usage
 
@@ -17,16 +29,14 @@ A Logseq plugin that collapses/expands all blocks based on their nesting level.
 | `Ctrl+Shift+8`     | Show blocks up to level 8           |
 | `Ctrl+Shift+9`     | Show all blocks                     |
 
-On macOS, `Ctrl` becomes `Cmd` by default.
-
-All commands also appear in the command palette.
+On macOS, `Ctrl` maps to `Cmd` by default.
 
 ## Configuration
 
 ### Modifier keys
 
-Go to plugin settings and change `modifier` to customize the key prefix.
-After changing, disable/re-enable the plugin for the new bindings to take effect.
+Go to **Settings → Plugins → Expand by Level** and change the `modifier` field.
+After changing, disable then re-enable the plugin for new bindings to take effect.
 
 Common values:
 - `mod+shift` — Ctrl+Shift (Win/Linux) / Cmd+Shift (macOS)
@@ -37,21 +47,36 @@ Common values:
 
 ### Individual keybinding overrides
 
-You can override any shortcut in Logseq's **Settings → Keyboard Shortcuts** by searching for "Expend by Level".
+You can override any shortcut in **Settings → Keyboard Shortcuts** by searching for "Expand by Level".
+
+## Installation
+
+### From the marketplace
+
+Search for "Expand by Level" in **Settings → Plugins → Marketplace**.
+
+### Manual (development)
+
+```bash
+git clone https://github.com/darkone-linux/logseq-expand-by-level.git
+cd logseq-expand-by-level
+npm install
+npm run build
+```
+
+Then **Settings → Plugins → Load unpacked plugin** → select the project root.
 
 ## Development
 
 ```bash
-pnpm install
-pnpm build
+npm run dev       # Vite dev server with HMR
+npm run build     # production build → dist/
 ```
-
-Load the plugin in Logseq via **Settings → Plugins → Load unpacked plugin**, selecting the project root (not `dist/`).
 
 ## Publishing
 
-1. Push to GitHub
-2. Create a tag: `git tag v1.0.0 && git push --tags`
-3. Create a release on GitHub from the tag
-4. The GitHub Action builds and attaches the zip automatically
+1. `just bump [patch|minor|major]` — bumps version, commits, tags
+2. `git push && git push --tags`
+3. Create a GitHub Release from the tag
+4. The [publish workflow](./.github/workflows/publish.yml) attaches the zip
 5. Submit a PR to [logseq/marketplace](https://github.com/logseq/marketplace)

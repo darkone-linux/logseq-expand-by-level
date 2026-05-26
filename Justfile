@@ -1,4 +1,4 @@
-# expend-by-level
+# logseq-expand-by-level
 # darkone@darkone.yt
 
 _default:

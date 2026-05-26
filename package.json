@@ -1,5 +1,5 @@
 {
-  "name": "logseq-expend-by-level",
+  "name": "logseq-expand-by-level",
   "version": "1.0.0",
   "description": "Collapse/expand all blocks by level with keyboard shortcuts",
   "main": "dist/index.html",
@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "logseq": {
-    "id": "logseq-expend-by-level",
-    "title": "Expend by Level"
+    "id": "logseq-expand-by-level",
+    "title": "Expand by Level"
   },
   "dependencies": {
     "@logseq/libs": "^0.2.3"
