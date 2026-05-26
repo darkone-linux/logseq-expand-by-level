@@ -9,27 +9,24 @@ A Logseq plugin that collapses or expands all blocks by nesting level with keybo
 
 ## Features
 
-- **10 levels** — `Ctrl+Shift+0` (root only) through `Ctrl+Shift+9` (expand all)
+- **8 levels** — `Alt+Shift+1` (all collapsed) through `Alt+Shift+8` (expand deep)
+- **Numpad support** — both top-row and numpad numbers work
 - **Works everywhere** — journals, pages, embedded blocks, sidebar
-- **Configurable modifier** — choose `mod+shift`, `mod+alt`, `ctrl+shift`, etc.
+- **Configurable modifier** — `alt+shift` by default, changeable to `ctrl+shift`, `mod+shift`, etc.
 - **Command palette** — all commands also searchable in the palette
 
 ## Usage
 
-| Shortcut           | Effect                              |
-| ------------------ | ----------------------------------- |
-| `Ctrl+Shift+0`     | Show only root blocks (level 0)     |
-| `Ctrl+Shift+1`     | Show blocks up to level 1           |
-| `Ctrl+Shift+2`     | Show blocks up to level 2           |
-| `Ctrl+Shift+3`     | Show blocks up to level 3           |
-| `Ctrl+Shift+4`     | Show blocks up to level 4           |
-| `Ctrl+Shift+5`     | Show blocks up to level 5           |
-| `Ctrl+Shift+6`     | Show blocks up to level 6           |
-| `Ctrl+Shift+7`     | Show blocks up to level 7           |
-| `Ctrl+Shift+8`     | Show blocks up to level 8           |
-| `Ctrl+Shift+9`     | Show all blocks                     |
-
-On macOS, `Ctrl` maps to `Cmd` by default.
+| Shortcut       | Effect                                          |
+| -------------- | ----------------------------------------------- |
+| `Alt+Shift+1`  | Collapse all blocks                             |
+| `Alt+Shift+2`  | Show root blocks only (collapse children)       |
+| `Alt+Shift+3`  | Expand up to depth 1, collapse deeper           |
+| `Alt+Shift+4`  | Expand up to depth 2, collapse deeper           |
+| `Alt+Shift+5`  | Expand up to depth 3, collapse deeper           |
+| `Alt+Shift+6`  | Expand up to depth 4, collapse deeper           |
+| `Alt+Shift+7`  | Expand up to depth 5, collapse deeper           |
+| `Alt+Shift+8`  | Expand up to depth 6, collapse deeper           |
 
 ## Configuration
 
@@ -39,11 +36,10 @@ Go to **Settings → Plugins → Expand by Level** and change the `modifier` fie
 After changing, disable then re-enable the plugin for new bindings to take effect.
 
 Common values:
+- `alt+shift` — default, works on all platforms
+- `ctrl+shift` — Ctrl+Shift (Win/Linux)
 - `mod+shift` — Ctrl+Shift (Win/Linux) / Cmd+Shift (macOS)
-- `mod+alt` — Ctrl+Alt / Cmd+Alt
-- `mod+shift+alt` — Ctrl+Shift+Alt / Cmd+Shift+Alt
-- `ctrl+shift` — Ctrl+Shift (Win/Linux only)
-- `ctrl+alt` — Ctrl+Alt (Win/Linux only)
+- `ctrl+alt` — Ctrl+Alt (Win/Linux)
 
 ### Individual keybinding overrides
 

@@ -1,21 +1,26 @@
 import '@logseq/libs'
 
 function main() {
-  const modifier = (logseq.settings?.modifier as string) ?? 'mod+shift'
+  const modifier = (logseq.settings?.modifier as string) ?? 'alt+shift'
 
-  for (let level = 0; level <= 9; level++) {
+  for (let level = 1; level <= 8; level++) {
+    const label =
+      level === 1
+        ? 'Level 1: collapse all blocks'
+        : `Level ${level}: expand up to depth ${level - 1}`
+
     logseq.App.registerCommand(
       'expand-by-level',
       {
         key: `expand-to-level-${level}`,
-        label: `Show blocks up to level ${level}`,
+        label,
         keybinding: {
-          binding: `${modifier}+${level}`,
+          binding: [`${modifier}+${level}`, `${modifier}+num-${level}`] as any,
           mode: 'global',
         },
         palette: true,
       },
-      () => toggleBlocksToLevel(level),
+      () => setBlocksVisibility(level),
     )
   }
 
@@ -30,11 +35,11 @@ function main() {
     {
       key: 'modifier',
       type: 'string',
-      default: 'mod+shift',
+      default: 'alt+shift',
       title: 'Modifier keys',
       description:
-        'Prefix for all shortcuts. Common: mod+shift, mod+alt, mod+shift+alt, ctrl+shift, ctrl+alt. ' +
-        '"mod" maps to Cmd on macOS / Ctrl on Windows/Linux.',
+        'Prefix for all shortcuts (e.g. "alt+shift", "ctrl+shift", "mod+shift"). ' +
+        'Use "mod" for Cmd on macOS / Ctrl on Windows/Linux.',
     },
   ])
 }
@@ -42,12 +47,12 @@ function main() {
 async function processBlock(
   block: BlockEntity,
   depth: number,
-  targetLevel: number,
+  collapseDepth: number,
 ): Promise<void> {
   if (!block.uuid) return
 
   try {
-    await logseq.Editor.setBlockCollapsed(block.uuid, depth > targetLevel)
+    await logseq.Editor.setBlockCollapsed(block.uuid, depth >= collapseDepth)
   } catch (e) {
     console.error('[expand-by-level] setBlockCollapsed error:', e)
     return
@@ -62,21 +67,29 @@ async function processBlock(
         const fetched = await logseq.Editor.getBlock(child[1], {
           includeChildren: true,
         })
-        if (fetched) promises.push(processBlock(fetched, depth + 1, targetLevel))
+        if (fetched)
+          promises.push(processBlock(fetched, depth + 1, collapseDepth))
       }
     } else if (child && typeof child === 'object' && child.uuid) {
-      promises.push(processBlock(child, depth + 1, targetLevel))
+      promises.push(processBlock(child, depth + 1, collapseDepth))
     }
   }
   await Promise.all(promises)
 }
 
-async function toggleBlocksToLevel(level: number): Promise<void> {
+async function setBlocksVisibility(level: number): Promise<void> {
   try {
     const tree = await logseq.Editor.getCurrentPageBlocksTree()
     if (!tree || tree.length === 0) return
 
-    await Promise.all(tree.map((block) => processBlock(block, 0, level)))
+    // level 1 → collapseDepth = 0 (all collapsed)
+    // level 2 → collapseDepth = 1 (root only expanded)
+    // level N → collapseDepth = N - 1
+    const collapseDepth = level - 1
+
+    await Promise.all(
+      tree.map((block) => processBlock(block, 0, collapseDepth)),
+    )
   } catch (e) {
     console.error('[expand-by-level] Error:', e)
   }
