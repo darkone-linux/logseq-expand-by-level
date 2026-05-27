@@ -1,10 +1,13 @@
-# Expand by Level
+# Expand by Level LogSeq plugin
 
 **Collapse and expand every block on the current page to a chosen depth — instantly, with a single keystroke.**
 
 Press `Alt+1` to collapse everything. `Alt+2` to see only the top level. `Alt+5` to drill down five levels. One keystroke, the whole outline reshapes around you. Perfect for navigating long pages, reviewing journals, or focusing on the structure of a document.
 
 ![Demo](./demo.gif)
+
+> [!NOTE]
+> **[Logseq](https://logseq.com)** is a privacy-first, open-source knowledge management platform. This plugin extends its outliner functionality with keyboard-driven block visibility by nesting depth. — [Project repository](https://github.com/darkone-linux/logseq-expand-by-level)
 
 ## Shortcuts
 
