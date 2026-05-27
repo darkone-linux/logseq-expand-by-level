@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Collapse/expand all blocks by level with keyboard shortcuts",
   "main": "dist/index.html",
+  "license": "AGPL-3.0-or-later",
+  "author": "Guillaume Ponçon",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

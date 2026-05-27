@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  PLUGIN_NAME: logseq-expand-by-level
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,10 +22,19 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 10
-      - run: pnpm install
-      - run: pnpm build
-      - name: Package plugin
-        run: cd dist && zip -r ../logseq-expand-by-level.zip .
-      - uses: softprops/action-gh-release@v2
+      - name: Build
+        id: build
+        run: |
+          pnpm install
+          pnpm build
+          mkdir ${{ env.PLUGIN_NAME }}
+          cp README.md package.json icon.png demo.gif ${{ env.PLUGIN_NAME }}
+          mv dist ${{ env.PLUGIN_NAME }}
+          zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
+          echo "tag_name=$(git tag --sort version:refname | tail -n 1)" >> $GITHUB_OUTPUT
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          files: logseq-expand-by-level.zip
+          files: |
+            ${{ env.PLUGIN_NAME }}.zip
+            package.json

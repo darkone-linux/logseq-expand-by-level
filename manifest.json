@@ -1,6 +1,6 @@
 {
   "title": "Expand by Level",
-  "description": "Collapse or expand all blocks by nesting level with keyboard shortcuts (Ctrl+Shift+0-9).",
+  "description": "Collapse or expand all blocks by nesting level with keyboard shortcuts (default: Alt+1-8).",
   "author": "Guillaume Ponçon",
   "repo": "darkone-linux/logseq-expand-by-level",
   "icon": "./icon.png"
