@@ -38,7 +38,7 @@ function main() {
       title: "Modifier keys",
       description:
         'Prefix for all shortcuts. Recommended: "alt" (single-hand ergonomic). ' +
-        'Alternatives: "ctrl+alt", "ctrl+shift", "mod+shift". ' +
+        'Alternatives: "ctrl", "ctrl+alt", "mod". ' +
         'Use "mod" for Cmd on macOS / Ctrl on Windows/Linux.',
     },
   ]);
@@ -70,7 +70,11 @@ async function processBlock(
         if (fetched)
           promises.push(processBlock(fetched, depth + 1, collapseDepth));
       }
-    } else if (child && typeof child === "object" && (child as BlockEntity).uuid) {
+    } else if (
+      child &&
+      typeof child === "object" &&
+      (child as BlockEntity).uuid
+    ) {
       promises.push(
         processBlock(child as BlockEntity, depth + 1, collapseDepth),
       );

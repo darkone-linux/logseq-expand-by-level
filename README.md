@@ -4,8 +4,7 @@
 
 Press `Alt+1` to collapse everything. `Alt+2` to see only the top level. `Alt+5` to drill down five levels. One keystroke, the whole outline reshapes around you. Perfect for navigating long pages, reviewing journals, or focusing on the structure of a document.
 
-<!-- TODO: animated demo gif -->
-<!-- ![Demo](./demo.gif) -->
+![Demo](./demo.gif)
 
 ## Shortcuts
 
